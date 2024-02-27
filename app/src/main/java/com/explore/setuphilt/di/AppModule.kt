@@ -50,4 +50,18 @@ object AppModule {
     fun provideUserDao(database: UserDatabase): UserDao {
         return database.userDao()
     }
+
+    @Provides
+    fun provideRemoteUserDataSource(
+        userApiService: UserApiService
+    ): RemoteUserDataSource {
+        return RemoteUserDataSource(userApiService)
+    }
+
+    @Provides
+    fun provideLocalUserDataSource(
+        userDao: UserDao
+    ): LocalUserDataSource {
+        return LocalUserDataSource(userDao)
+    }
 }
