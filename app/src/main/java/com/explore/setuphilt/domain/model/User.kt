@@ -1,13 +1,13 @@
 package com.explore.setuphilt.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "user")
 data class User(
-    val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val email: String,
-    val avatar: String
-) {
-    fun toUserEntity(): UserEntity {
-        return UserEntity(id, firstName, lastName, email, avatar)
-    }
-}
+    @PrimaryKey val id: Int,
+    val firstName: String?,
+    val lastName: String?,
+    val email: String?,
+    val avatar: String?
+)

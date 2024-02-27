@@ -17,7 +17,7 @@ fun UserListItem(user: User, modifier: Modifier = Modifier) {
             .fillMaxWidth()
     ) {
         Text(text = "${user.firstName} ${user.lastName}")
-        Text(text = user.email)
+        user.email?.let { Text(text = it) }
         // Add more details or UI components as needed
     }
 }

@@ -14,8 +14,8 @@ class UserRepositoryImpl(
     override suspend fun getUsers(page: Int): List<User> {
         val response = remoteUserDataSource.getUsers(page)
         if (response.isNotEmpty()) {
-            localUserDataSource.saveUsers(response.map { it.toUserEntity() })
-            return localUserDataSource.getUsers().map { it.toUser() }
+            localUserDataSource.saveUsers(response)
+            return localUserDataSource.getUsers()
         } else {
             throw IOException("Error fetching users: $response")
         }
