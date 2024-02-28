@@ -2,6 +2,7 @@ package com.explore.setuphilt.di
 
 import android.app.Application
 import android.content.Context
+import com.explore.setuphilt.data.api.ApiClient
 import com.explore.setuphilt.data.api.UserApiService
 import com.explore.setuphilt.data.database.UserDao
 import com.explore.setuphilt.data.database.UserDatabase
@@ -13,8 +14,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -34,11 +33,7 @@ object AppModule {
 
     @Provides
     fun provideUserApiService(): UserApiService {
-        return Retrofit.Builder()
-            .baseUrl("https://reqres.in")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(UserApiService::class.java)
+        return ApiClient.getInstance()
     }
 
     @Provides

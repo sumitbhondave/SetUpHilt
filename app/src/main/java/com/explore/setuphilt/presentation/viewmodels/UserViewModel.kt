@@ -1,4 +1,4 @@
-package com.explore.setuphilt.screens.viewmodels
+package com.explore.setuphilt.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.explore.setuphilt.screens.components
+package com.explore.setuphilt.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

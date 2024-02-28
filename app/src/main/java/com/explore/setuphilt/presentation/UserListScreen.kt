@@ -1,4 +1,4 @@
-package com.explore.setuphilt.screens
+package com.explore.setuphilt.presentation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +11,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.explore.setuphilt.screens.components.UserListItem
-import com.explore.setuphilt.screens.viewmodels.UserViewModel
+import com.explore.setuphilt.presentation.components.UserListItem
+import com.explore.setuphilt.presentation.viewmodels.UserViewModel
 
 @Composable
 fun UserListScreen(userViewModel: UserViewModel = viewModel()) {
