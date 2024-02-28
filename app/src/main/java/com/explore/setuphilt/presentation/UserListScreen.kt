@@ -6,18 +6,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.explore.setuphilt.domain.model.User
 import com.explore.setuphilt.presentation.components.UserListItem
-import com.explore.setuphilt.presentation.viewmodels.UserViewModel
 
 @Composable
-fun UserListScreen(userViewModel: UserViewModel = viewModel()) {
-    val users by userViewModel.userList.observeAsState(initial = emptyList())
-
+fun UserListScreen(users: List<User>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp)

@@ -1,6 +1,5 @@
 package com.explore.setuphilt.di
 
-import android.app.Application
 import android.content.Context
 import com.explore.setuphilt.data.api.ApiClient
 import com.explore.setuphilt.data.api.UserApiService
@@ -13,16 +12,12 @@ import com.explore.setuphilt.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    @Provides
-    fun provideContext(application: Application): Context {
-        return application.applicationContext
-    }
-
     @Provides
     fun provideUserRepository(
         remoteUserDataSource: RemoteUserDataSource,
@@ -37,7 +32,7 @@ object AppModule {
     }
 
     @Provides
-    fun provideDatabase(context: Context): UserDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): UserDatabase {
         return UserDatabase.getInstance(context)
     }
 
