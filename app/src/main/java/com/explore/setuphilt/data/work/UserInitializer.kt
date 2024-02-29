@@ -2,7 +2,6 @@ package com.explore.setuphilt.data.work
 
 import android.content.Context
 import androidx.work.Constraints
-import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -21,10 +20,7 @@ object DownloadUser {
         ).setConstraints(constraints).addTag("user_unique_work").build()
 
         WorkManager.getInstance(context).apply {
-            enqueueUniquePeriodicWork(
-                "name",
-                ExistingPeriodicWorkPolicy.KEEP, userFetchRequest
-            )
+            enqueue(userFetchRequest)
         }
     }
 }
