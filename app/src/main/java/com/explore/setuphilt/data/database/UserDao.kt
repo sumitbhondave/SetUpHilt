@@ -1,5 +1,6 @@
 package com.explore.setuphilt.data.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,4 +14,7 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsers(users: List<UserEntity>)
+
+    @Query("SELECT * FROM user")
+    fun getLiveUsers(): LiveData<List<UserEntity>>
 }

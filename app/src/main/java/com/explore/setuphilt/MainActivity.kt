@@ -1,6 +1,7 @@
 package com.explore.setuphilt
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { internalPadding ->
                     Surface(modifier = Modifier.padding(internalPadding)) {
-                        UserList()
+                        UserList2(this)
                     }
                 }
             }
@@ -84,4 +86,11 @@ fun UserList() {
     } else {
         UserListScreen(uiState.data)
     }
+}
+
+@Composable
+fun UserList2(context: MainActivity) {
+    val userViewModel: UserViewModel = viewModel()
+    val uiState by userViewModel.items.observeAsState()
+    Log.d("sumit", "new_way of uiState: $uiState")
 }

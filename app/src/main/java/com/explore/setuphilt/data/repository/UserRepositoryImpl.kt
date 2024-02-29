@@ -1,5 +1,6 @@
 package com.explore.setuphilt.data.repository
 
+import androidx.lifecycle.LiveData
 import com.explore.setuphilt.data.source.LocalUserDataSource
 import com.explore.setuphilt.data.source.RemoteUserDataSource
 import com.explore.setuphilt.domain.model.User
@@ -23,5 +24,14 @@ class UserRepositoryImpl(
         } else {
             throw IOException("Error fetching users: $response")
         }
+    }
+
+    override suspend fun fetchUsers(page: Int): Boolean {
+        val response = remoteUserDataSource.getUsers(page)
+        return response.isNotEmpty()
+    }
+
+    override fun getItems(): LiveData<List<UserEntity>> {
+        return localUserDataSource.getLiveUsers()
     }
 }
