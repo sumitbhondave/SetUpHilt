@@ -9,5 +9,5 @@ interface UserRepository {
 
     suspend fun fetchUsers(page: Int): Boolean
 
-    fun getItems(): LiveData<List<UserEntity>>
+    fun getLiveUsers(): LiveData<List<UserEntity>>
 }

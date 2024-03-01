@@ -2,16 +2,12 @@ package com.explore.setuphilt.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.explore.setuphilt.domain.model.User
 import com.explore.setuphilt.domain.model.UserEntity
 import com.explore.setuphilt.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,23 +15,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     private val _uiState = MutableStateFlow(ViewState())
     var viewState = _uiState.asStateFlow()
 
-    val items: LiveData<List<UserEntity>> = userRepository.getItems()
-
-    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        throwable.printStackTrace()
-    }
-
-//    init {
-//        viewModelScope.launch(Dispatchers.Default + coroutineExceptionHandler) {
-//            _uiState.value = _uiState.value.copy(isLoading = true)
-//            val users = userRepository.getUsers(page = 1)
-//            if (users.isNotEmpty()) {
-//                _uiState.value = _uiState.value.copy(isLoading = false, data = users)
-//            } else {
-//                _uiState.value = _uiState.value.copy(isLoading = false, isError = true)
-//            }
-//        }
-//    }
+    val users: LiveData<List<UserEntity>> = userRepository.getLiveUsers()
 }
 
 data class ViewState(
@@ -43,3 +23,9 @@ data class ViewState(
     val data: List<User> = emptyList(),
     val isError: Boolean = false
 )
+
+sealed interface MainActivityUiState {
+    data object Loading : MainActivityUiState
+    data class Success(val userData: List<User>) : MainActivityUiState
+}
+

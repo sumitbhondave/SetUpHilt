@@ -8,11 +8,11 @@ import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.explore.setuphilt.domain.model.User
+import com.explore.setuphilt.domain.model.UserEntity
 import com.explore.setuphilt.presentation.components.UserListItem
 
 @Composable
-fun UserListScreen(users: List<User>) {
+fun UserListScreen(users: List<UserEntity>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp)

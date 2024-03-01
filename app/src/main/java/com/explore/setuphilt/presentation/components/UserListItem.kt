@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.explore.setuphilt.domain.model.User
+import com.explore.setuphilt.domain.model.UserEntity
 
 @Composable
-fun UserListItem(user: User, modifier: Modifier = Modifier) {
+fun UserListItem(user: UserEntity, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .padding(8.dp)
@@ -24,7 +24,7 @@ fun UserListItem(user: User, modifier: Modifier = Modifier) {
                 contentDescription = null,
             )
             Column(modifier = Modifier.padding(start = 16.dp)) {
-                Text(text = "${user.first_name} ${user.last_name}")
+                Text(text = "${user.firstName} ${user.lastName}")
                 user.email?.let { Text(text = it) }
             }
         }

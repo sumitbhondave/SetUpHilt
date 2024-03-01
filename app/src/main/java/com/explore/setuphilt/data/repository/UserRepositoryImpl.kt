@@ -28,10 +28,15 @@ class UserRepositoryImpl(
 
     override suspend fun fetchUsers(page: Int): Boolean {
         val response = remoteUserDataSource.getUsers(page)
+        if (response.isNotEmpty()) {
+            localUserDataSource.saveUsers(response.map {
+                UserEntity(it.id, it.first_name, it.last_name, it.email, it.avatar)
+            })
+        }
         return response.isNotEmpty()
     }
 
-    override fun getItems(): LiveData<List<UserEntity>> {
+    override fun getLiveUsers(): LiveData<List<UserEntity>> {
         return localUserDataSource.getLiveUsers()
     }
 }
