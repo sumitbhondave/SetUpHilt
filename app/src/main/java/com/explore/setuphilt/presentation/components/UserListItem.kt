@@ -24,7 +24,7 @@ fun UserListItem(user: UserEntity, modifier: Modifier = Modifier) {
                 contentDescription = null,
             )
             Column(modifier = Modifier.padding(start = 16.dp)) {
-                Text(text = "${user.firstName} ${user.lastName}")
+                Text(text = "${user.first_name} ${user.last_name}")
                 user.email?.let { Text(text = it) }
             }
         }

@@ -2,7 +2,6 @@ package com.explore.setuphilt.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.explore.setuphilt.domain.model.User
 import com.explore.setuphilt.domain.model.UserEntity
 import com.explore.setuphilt.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,12 +19,12 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
 data class ViewState(
     val isLoading: Boolean = false,
-    val data: List<User> = emptyList(),
+    val data: List<UserEntity> = emptyList(),
     val isError: Boolean = false
 )
 
 sealed interface MainActivityUiState {
     data object Loading : MainActivityUiState
-    data class Success(val userData: List<User>) : MainActivityUiState
+    data class Success(val userData: List<UserEntity>) : MainActivityUiState
 }
 
